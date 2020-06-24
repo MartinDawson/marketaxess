@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { WEATHER_ENDPOINT } from '../../api/weatherApi';
 import { getWeatherMock } from '../../mocks/weatherMock';
+import { WEATHER_ENDPOINT } from './actions';
 
 const mock = new MockAdapter(axios);
 
