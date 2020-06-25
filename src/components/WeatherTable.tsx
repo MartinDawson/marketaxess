@@ -48,10 +48,10 @@ const MainWeatherTable: FC = () => {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.name}>
-              <TableCell>{row.calories}</TableCell>
+              {/* <TableCell>{row.calories}</TableCell>
               <TableCell>{row.fat}</TableCell>
               <TableCell>{row.carbs}</TableCell>
-              <TableCell>{row.protein}</TableCell>
+              <TableCell>{row.protein}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>
