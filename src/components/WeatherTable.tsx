@@ -7,6 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/reducer';
+import { WeatherState } from '../redux/weather/reducer';
 
 const useStyles = makeStyles({
   table: {
@@ -27,8 +30,9 @@ const rows = [
   createData('', 37),
 ];
 
-const MainWeatherTable: FC = () => {
+const WeatherTable: FC = () => {
   const classes = useStyles();
+  // const weather = useSelector<RootState, WeatherState>((state) => state.weather.data?.list);
 
   return (
     <TableContainer component={Paper}>
@@ -60,4 +64,4 @@ const MainWeatherTable: FC = () => {
   );
 };
 
-export default MainWeatherTable;
+export default WeatherTable;

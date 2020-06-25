@@ -10,31 +10,35 @@ export interface WeatherMain {
   temp_kf: number;
 }
 
+export interface WeatherObject {
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
+}
+
+export interface WeatherListObject {
+  dt: number;
+  main: WeatherMain;
+  weather: WeatherObject[]
+  clouds: {
+    all: number;
+  }
+  wind: {
+    speed: number;
+    deg: number;
+  }
+  sys: {
+    pod: string;
+  },
+  dt_txt: string;
+}
+
 export interface Weather {
   cod: string;
   message: number;
   cnt: number;
-  list: {
-    dt: number;
-    main: WeatherMain;
-    weather: {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    }[]
-    clouds: {
-      all: number;
-    }
-    wind: {
-      speed: number;
-      deg: number;
-    }
-    sys: {
-      pod: string;
-    },
-    dt_txt: string;
-  }
+  list: WeatherListObject[]
   city: {
     id: number;
     name: string;
