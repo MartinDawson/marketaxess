@@ -16,7 +16,7 @@ const initialWeatherState = {
 
 const reducer = createReducer<WeatherState>(initialWeatherState, (builder) => builder
   .addCase(getWeather.fulfilled, (state, action) => {
-    // If performance is priority then don't do 2 seperate maps
+    // Would be best to use normalizr usually but data has no unique id so not possible
     const weatherMains = action.payload.data.list.map((x) => x.main);
     const weatherObjects = action.payload.data.list.flatMap((x) => x.weather);
 

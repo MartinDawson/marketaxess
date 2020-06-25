@@ -11,6 +11,7 @@ import { WeatherMain } from '../types';
 import { RootState } from '../redux/reducer';
 import StyledTableCell from './StyledTableCell';
 import StyledTableRow from './StyledTableRow';
+import formatTemperature from '../formatters/formatTemperature';
 
 const WeatherMainTable: React.FC = () => {
   const weatherMains = useSelector<RootState, WeatherMain[]>((state) => state.weather.weatherMains);
@@ -33,14 +34,17 @@ const WeatherMainTable: React.FC = () => {
         <TableBody>
           {weatherMains.map((weatherMain, index) => (
             <StyledTableRow key={index}>
-              <StyledTableCell>{weatherMain.temp}</StyledTableCell>
-              <StyledTableCell>{weatherMain.feels_like}</StyledTableCell>
-              <StyledTableCell>{weatherMain.temp_min}</StyledTableCell>
-              <StyledTableCell>{weatherMain.temp_max}</StyledTableCell>
+              <StyledTableCell>{formatTemperature(weatherMain.temp)}</StyledTableCell>
+              <StyledTableCell>{formatTemperature(weatherMain.feels_like)}</StyledTableCell>
+              <StyledTableCell>{formatTemperature(weatherMain.temp_min)}</StyledTableCell>
+              <StyledTableCell>{formatTemperature(weatherMain.temp_max)}</StyledTableCell>
               <StyledTableCell>{weatherMain.pressure}</StyledTableCell>
               <StyledTableCell>{weatherMain.sea_level}</StyledTableCell>
               <StyledTableCell>{weatherMain.grnd_level}</StyledTableCell>
-              <StyledTableCell>{weatherMain.humidity}</StyledTableCell>
+              <StyledTableCell>
+                {weatherMain.humidity}
+                %
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

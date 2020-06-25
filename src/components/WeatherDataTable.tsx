@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/reducer';
 import { WeatherObject } from '../types';
 import StyledTableCell from './StyledTableCell';
+import StyledTableRow from './StyledTableRow';
 
 const WeatherDataTable: FC = () => {
   const weatherObjects = useSelector<RootState, WeatherObject[]>((state) => state.weather.weatherObjects);
@@ -28,12 +29,12 @@ const WeatherDataTable: FC = () => {
         <TableBody>
           {weatherObjects.map((weatherObject, index) => (
             /* Change the key by adding a uid in reducer if sorting is needed */
-            <TableRow key={index}>
+            <StyledTableRow key={index}>
               <StyledTableCell>{weatherObject.id}</StyledTableCell>
               <StyledTableCell>{weatherObject.main}</StyledTableCell>
               <StyledTableCell>{weatherObject.description}</StyledTableCell>
               <StyledTableCell>{weatherObject.icon}</StyledTableCell>
-            </TableRow>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>
