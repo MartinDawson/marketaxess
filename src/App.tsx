@@ -9,6 +9,7 @@ import { Button, Box } from '@material-ui/core';
 import { getWeather } from './redux/weather/actions';
 import WeatherDataTable from './components/WeatherDataTable';
 import WeatherMainTable from './components/WeatherMainTable';
+import ErrorToast from './components/ErrorToast';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -19,11 +20,12 @@ const App: FC = () => {
 
   return (
     <div className="App">
+      <ErrorToast />
       <Box display="flex" alignItems="center" justifyContent="center">
-        <Button component={RouterLink} color="primary" to="/weather">Weather</Button>
+        <Button component={RouterLink} color="primary" to="/">Weather</Button>
         <Button component={RouterLink} color="primary" to="/weatherData">Weather Data</Button>
       </Box>
-      <Route exact path="/weather" component={WeatherMainTable} />
+      <Route exact path="/" component={WeatherMainTable} />
       <Route exact path="/weatherData" component={WeatherDataTable} />
     </div>
   );

@@ -22,8 +22,6 @@ const reducer = createReducer<WeatherState>(initialWeatherState, (builder) => bu
 
     state.weatherMains = weatherMains;
     state.weatherObjects = weatherObjects;
-  }).addCase(getWeather.rejected, (state, action) => {
-    state.error = action.error;
   }));
 
 export default reducer;
