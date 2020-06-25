@@ -3,7 +3,6 @@ import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -11,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/reducer';
 import { WeatherObject } from '../types';
+import CenteredTableCell from './CenteredTableCell';
 
 const useStyles = makeStyles({
   table: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const WeatherTable: FC = () => {
+const WeatherDataTable: FC = () => {
   const classes = useStyles();
   const weatherObjects = useSelector<RootState, WeatherObject[]>((state) => state.weather.weatherObjects);
 
@@ -27,20 +27,20 @@ const WeatherTable: FC = () => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Id</TableCell>
-            <TableCell align="center">Main</TableCell>
-            <TableCell align="center">Description</TableCell>
-            <TableCell align="center">Icon</TableCell>
+            <CenteredTableCell>Id</CenteredTableCell>
+            <CenteredTableCell>Main</CenteredTableCell>
+            <CenteredTableCell>Description</CenteredTableCell>
+            <CenteredTableCell>Icon</CenteredTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {weatherObjects.map((weatherObject, index) => (
             /* Change the key by adding a uid in reducer if sorting is needed */
             <TableRow key={index}>
-              <TableCell align="center">{weatherObject.id}</TableCell>
-              <TableCell align="center">{weatherObject.main}</TableCell>
-              <TableCell align="center">{weatherObject.description}</TableCell>
-              <TableCell align="center">{weatherObject.icon}</TableCell>
+              <CenteredTableCell>{weatherObject.id}</CenteredTableCell>
+              <CenteredTableCell>{weatherObject.main}</CenteredTableCell>
+              <CenteredTableCell>{weatherObject.description}</CenteredTableCell>
+              <CenteredTableCell>{weatherObject.icon}</CenteredTableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -49,4 +49,4 @@ const WeatherTable: FC = () => {
   );
 };
 
-export default WeatherTable;
+export default WeatherDataTable;

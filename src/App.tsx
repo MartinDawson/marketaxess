@@ -1,8 +1,13 @@
 import React, { FC, useEffect } from 'react';
 import './App.css';
 import { useDispatch } from 'react-redux';
+import {
+  Route,
+  Link as RouterLink,
+} from 'react-router-dom';
+import { Button, Box } from '@material-ui/core';
 import { getWeather } from './redux/weather/actions';
-import WeatherTable from './components/WeatherTable';
+import WeatherDataTable from './components/WeatherDataTable';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -13,7 +18,11 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <WeatherTable />
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Button component={RouterLink} color="primary" to="/weatherData">Weather Data</Button>
+      </Box>
+      <Route exact path="/weather" />
+      <Route exact path="/weatherData" component={WeatherDataTable} />
     </div>
   );
 };
