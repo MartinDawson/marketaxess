@@ -29,7 +29,6 @@ const rows = [
 
 const MainWeatherTable: FC = () => {
   const classes = useStyles();
-  const;
 
   return (
     <TableContainer component={Paper}>
