@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { FC } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -9,7 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/reducer';
-import { WeatherState } from '../redux/weather/reducer';
+import { WeatherObject } from '../types';
 
 const useStyles = makeStyles({
   table: {
@@ -17,45 +18,29 @@ const useStyles = makeStyles({
   },
 });
 
-const createData = (name: string, value: number) => ({ name, value });
-
-const rows = [
-  createData('', 301.35),
-  createData('', 298.61),
-  createData('', 299.94),
-  createData('', 301.35),
-  createData('', 1019),
-  createData('', 1020),
-  createData('', 1017),
-  createData('', 37),
-];
-
 const WeatherTable: FC = () => {
   const classes = useStyles();
-  // const weather = useSelector<RootState, WeatherState>((state) => state.weather.data?.list);
+  const weatherObjects = useSelector<RootState, WeatherObject[]>((state) => state.weather.weatherObjects);
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Temperature (°C)</TableCell>
-            <TableCell>Feels like</TableCell>
-            <TableCell>Minimum Temperature (°C)</TableCell>
-            <TableCell>Maximum Temperature (°C)</TableCell>
-            <TableCell>Pressure</TableCell>
-            <TableCell>Sea level</TableCell>
-            <TableCell>Ground level</TableCell>
-            <TableCell>Humidity</TableCell>
+            <TableCell align="center">Id</TableCell>
+            <TableCell align="center">Main</TableCell>
+            <TableCell align="center">Description</TableCell>
+            <TableCell align="center">Icon</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              {/* <TableCell>{row.calories}</TableCell>
-              <TableCell>{row.fat}</TableCell>
-              <TableCell>{row.carbs}</TableCell>
-              <TableCell>{row.protein}</TableCell> */}
+          {weatherObjects.map((weatherObject, index) => (
+            /* Change the key by adding a uid in reducer if sorting is needed */
+            <TableRow key={index}>
+              <TableCell align="center">{weatherObject.id}</TableCell>
+              <TableCell align="center">{weatherObject.main}</TableCell>
+              <TableCell align="center">{weatherObject.description}</TableCell>
+              <TableCell align="center">{weatherObject.icon}</TableCell>
             </TableRow>
           ))}
         </TableBody>

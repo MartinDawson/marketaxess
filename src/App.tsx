@@ -1,21 +1,20 @@
-import React, { FC } from 'react';
-import logo from './logo.svg';
+import React, { FC, useEffect } from 'react';
 import './App.css';
+import { useDispatch } from 'react-redux';
+import { getWeather } from './redux/weather/actions';
+import WeatherTable from './components/WeatherTable';
 
-const App: FC = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-);
+const App: FC = () => {
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getWeather());
+  }, [dispatch]);
+
+  return (
+    <div className="App">
+      <WeatherTable />
+    </div>
+  );
+};
 export default App;
