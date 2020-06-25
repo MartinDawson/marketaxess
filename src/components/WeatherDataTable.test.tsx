@@ -3,7 +3,6 @@ import MockAdapter from 'axios-mock-adapter';
 import { mount, ReactWrapper } from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Alert, AlertTitle } from '@material-ui/lab';
 import store from '../redux/store';
 import { getWeather, WEATHER_ENDPOINT } from '../redux/weather/actions';
 import { getWeatherMock } from '../mocks/weatherMock';
