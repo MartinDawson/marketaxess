@@ -14,8 +14,6 @@ const initialWeatherState = {
   weatherMains: [],
 };
 
-const fromKelvinToCelcius = (temp: number) => (temp - 32) * (5 / 9);
-
 const reducer = createReducer<WeatherState>(initialWeatherState, (builder) => builder
   .addCase(getWeather.fulfilled, (state, action) => {
     // If performance is priority then don't do 2 seperate maps
